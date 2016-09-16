@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class Entry(models.Model):
@@ -16,3 +17,9 @@ class Entry(models.Model):
                               null=True)
 
     publish = models.BooleanField(default=True)
+
+    slug = models.SlugField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Entry, self).save()

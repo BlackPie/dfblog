@@ -1,6 +1,8 @@
-from django.views.generic import ListView, DetailView, TemplateView
+from django.db.models import Q
 from django.core.urlresolvers import reverse_lazy
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+
 from project.apps.blog.models import Entry
 
 
@@ -15,6 +17,15 @@ class BlogView(ListView):
     model = Entry
     template_name = "apps/blog/blog.html"
     paginate_by = 10
+
+    def get_queryset(self):
+        object_list = Entry.objects.filter(publish=True).order_by('-created')
+        query = self.request.GET.get('q', None)
+
+        if query:
+            object_list = object_list.filter(Q(title__icontains=query) | Q(text__icontains=query))
+
+        return object_list
 
 
 class EntryView(DetailView):

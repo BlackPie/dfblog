@@ -11,7 +11,7 @@
         </h1>
         {% for entry in entry_list %}
             <h2>
-                <a href="#">{{ entry.title }}</a>
+                <a href="{% url 'entry' entry.slug %}">{{ entry.title }}</a>
             </h2>
             <p><span class="glyphicon glyphicon-time"></span> Posted on {{ entry.created|date:"F j, Y" }}</p>
             <hr>
@@ -22,21 +22,26 @@
             {% endif %}
             <hr>
             <p>{{ entry.preview_text }}</p>
-            <a class="btn btn-primary" href="{% url 'entry' entry.id %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="{% url 'entry' entry.slug %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
             {% if not forloop.last %}
                 <hr>
             {% endif %}
         {% endfor %}
 
-        {% if not is_paginated %}
+        {% if is_paginated %}
             <hr>
             <ul class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="next">
-                    <a href="#">Newer &rarr;</a>
-                </li>
+                {% if page_obj.has_next %}
+                    <li class="previous">
+                        <a href="/blog?page={{ page_obj.next_page_number }}">&larr; Older</a>
+                    </li>
+                {% endif %}
+
+                {% if page_obj.has_previous %}
+                    <li class="next">
+                        <a href="/blog?page={{ page_obj.previous_page_number }}">Newer &rarr;</a>
+                    </li>
+                {% endif%}
             </ul>
         {% endif %}
       </div>

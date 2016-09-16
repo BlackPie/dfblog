@@ -12,7 +12,7 @@ urlpatterns = [
 
     # main urls
     url(r'^$', BlogView.as_view(), name='blog'),
-    url(r'^post/(?P<pk>\d+)/$', EntryView.as_view(), name='entry'),
+    url(r'^post/(?P<slug>[\w-]+)/$', EntryView.as_view(), name='entry'),
 
     # users urls
     url(r'^signin/$', users_views.SigninView.as_view(), name='signin'),

@@ -10,7 +10,7 @@
         <hr>
         {% if entry.image %}
               {% thumbnail entry.image "900x300" crop="center" as im %}
-                  <img class="img-responsive" src="{{ im.url }}" alt="">
+                  <img class="img-responsive" src="{{ im.url }}" alt="{{ entry.title }}">
               {% endthumbnail %}
           {% endif %}
         <hr>
