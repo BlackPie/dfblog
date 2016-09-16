@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+
+{% block content %}
+
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Software Development
+            <small>random thoughts</small>
+        </h1>
+        {% for entry in entry_list %}
+            <h2>
+                <a href="#">{{ entry.title }}</a>
+            </h2>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on {{ entry.created|date:"F j, Y" }}</p>
+            <hr>
+            {% if entry.image %}
+                {% thumbnail entry.image "900x300" crop="center" as im %}
+                    <img class="img-responsive" src="{{ im.url }}" alt="">
+                {% endthumbnail %}
+            {% endif %}
+            <hr>
+            <p>{{ entry.preview_text }}</p>
+            <a class="btn btn-primary" href="{% url 'entry' entry.id %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+
+        {% if not is_paginated %}
+            <hr>
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Older</a>
+                </li>
+                <li class="next">
+                    <a href="#">Newer &rarr;</a>
+                </li>
+            </ul>
+        {% endif %}
+      </div>
+{% endblock %}

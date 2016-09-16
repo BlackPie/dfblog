@@ -5,7 +5,7 @@ from django.contrib.auth import logout, login
 from django.views.generic import View, FormView
 from django.core.urlresolvers import reverse_lazy
 
-from project.apps.dfblog.views import LoginRequiredMixin
+from project.apps.blog.views import LoginRequiredMixin
 from project.apps.users.forms import SignupForm, SigninForm
 
 

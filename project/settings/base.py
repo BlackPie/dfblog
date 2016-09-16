@@ -17,14 +17,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # third party apps
-    'djcelery',
-    'multiselectfield',
-    'solo',
     'crispy_forms',
     'django_extensions',
+    'sorl.thumbnail',
 
     # Project apps
-    'project.apps.dfblog',
+    'project.apps.blog',
     'project.apps.users',
 )
 
