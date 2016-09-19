@@ -23,7 +23,6 @@ INSTALLED_APPS = (
 
     # Project apps
     'project.apps.blog',
-    'project.apps.users',
 )
 
 try:

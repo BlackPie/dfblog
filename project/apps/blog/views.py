@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, TemplateView
 
 from project.apps.blog.models import Entry
 
@@ -31,3 +31,7 @@ class BlogView(ListView):
 class EntryView(DetailView):
     model = Entry
     template_name = "apps/blog/entry.html"
+
+
+class AboutView(TemplateView):
+    template_name = "apps/blog/about.html"
