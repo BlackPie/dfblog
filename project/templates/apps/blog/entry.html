@@ -9,11 +9,11 @@
         <p><span class="glyphicon glyphicon-time"></span> Posted on {{ entry.created|date:"M j, Y" }}</p>
         <hr>
         {% if entry.image %}
-              {% thumbnail entry.image "900x300" crop="center" as im %}
-                  <img class="img-responsive" src="{{ im.url }}" alt="{{ entry.title }}">
-              {% endthumbnail %}
-          {% endif %}
-        <hr>
+            {% thumbnail entry.image "900x300" crop="center" as im %}
+                <img class="img-responsive" src="{{ im.url }}" alt="{{ entry.title }}">
+            {% endthumbnail %}
+            <hr>
+        {% endif %}
         {{ entry.text }}
         <hr>
         <div class="well">

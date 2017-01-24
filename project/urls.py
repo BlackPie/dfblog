@@ -12,7 +12,8 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 
     # main urls
-    url(r'^$', BlogView.as_view(), name='blog'),
+    url(r'^$', BlogView.as_view(), name='index'),
+    url(r'^blog/$', BlogView.as_view(), name='blog'),
     url(r'^post/(?P<slug>[\w-]+)/$', EntryView.as_view(), name='entry'),
     url(r'^about/$', AboutView.as_view(), name='about'),
 

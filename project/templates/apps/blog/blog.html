@@ -19,8 +19,8 @@
                 {% thumbnail entry.image "900x300" crop="center" as im %}
                     <img class="img-responsive" src="{{ im.url }}" alt="">
                 {% endthumbnail %}
+                <hr>
             {% endif %}
-            <hr>
             <p>{{ entry.preview_text }}</p>
             <a class="btn btn-primary" href="{% url 'entry' entry.slug %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
             {% if not forloop.last %}
